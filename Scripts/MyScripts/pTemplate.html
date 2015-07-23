@@ -1,0 +1,50 @@
+﻿<form name="myForm" class="form-horizontal" novalidate  role="form">
+    <fieldset>
+        <legend>Contact Information</legend>
+        <div class="form-group">
+            <label for="email" class="col-sm-3 control-label">Email</label>
+            <div class="col-sm-9">
+                <input type="email" id="email" name="email" 
+                       ng-model="Email" class="form-control" required
+                       placeholder="Please put your email in" />
+                <div ng-messages="myForm.email.$error" ng-if="myForm.email.$dirty" style="color:maroon" role="alert">
+                    <div ng-message="email">this is not a proper mail address!</div>
+                    <div ng-message="required"> Your email is required.</div>
+                </div>
+                </div>
+
+            <label for="TeamName" class="col-sm-3 control-label">Your team Name</label>
+            <div class="col-sm-9">
+                <input type="text" id="TeamName" name="TeamName"
+                        ng-change="teamNameValidation()" 
+                       ng-model-options="{ updateOn: 'default blur', debounce: {'default': 300, 'blur': 0}}"
+                       ng-model="TeamName" 
+                       class="form-control" 
+                       required
+                       ng-minlength="3" 
+                       placeholder="Choose or create a team" />
+                       <!-- team-name-validator -->
+                    {{TeamValidationText}}             
+                <div ng-messages="myForm.TeamName.$error" ng-if="myForm.TeamName.$dirty" style="color:maroon" role="alert">
+                    <div ng-message="minlength">Your teamName is too short.</div>
+                    <div ng-message="required"> Your team name is required.</div>
+                   <!-- <div ng-message="teamNameValidator">The team you are trying to create is already existing, you will join the team!</div>-->
+                    
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+
+    <div class="col-sm-offset-3 col-sm-9">
+        <input type="button" class="btn btn-default"
+               value="Cancel"
+               ng-click="cancelForm()" />
+        <input type="button" class="btn btn-primary" value="{{button}}"
+                 name="submitButton"
+               id="submitButton"
+               ng-disabled=" myForm.$pending||myForm.$invalid"
+               ng-click="submitForm()" />
+    </div>
+
+</form>

@@ -1,0 +1,12 @@
+﻿<div ng-controller="loggedController">
+    Congrats you are now logged!
+    <div>
+        your team currently has {{numberPersonInTeam}}  users </br>
+        of which {{numberPersonVerified}}   are validated
+        </div>
+
+    <input type="button" class="btn btn-primary" value="Get your prize now!"
+           name="submitButton"
+           id="submitButton"
+           ng-click="clickButton()" />
+</div>
