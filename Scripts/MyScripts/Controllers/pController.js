@@ -33,16 +33,22 @@
 
     //Function to Submit the form 
     $scope.submitForm = function () {
-        var Person = {};
-        Person.Email = $scope.Email;
-        Person.TeamName = $scope.TeamName;
-        var promisePost = personInfoService.postInfo(Person).then(function () {
-            $location.path('/logged');
-        }).catch(function (error) {
-            var obj = JSON.parse(error.message);
-            alert(obj.Message);
-        }
-        );
+        var r = confirm("Press a button");
+        if (r == true) {
+            var Person = {};
+            Person.Email = $scope.Email;
+            Person.TeamName = $scope.TeamName;
+            var promisePost = personInfoService.postInfo(Person).then(function () {
+                $location.path('/logged');
+            }).catch(function (error) {
+                var obj = JSON.parse(error.message);
+                alert(obj.Message);
+            }
+            );
+        } else {
+           
+        } 
+     
     };
 
     //Function to Cancel Form
@@ -81,9 +87,13 @@ app.controller('loggedController', ['$scope', '$location', 'loggedService', func
             var obj = JSON.parse(data);
             $scope.numberPersonInTeam = obj.NumberUsersInTeam;
             $scope.numberPersonVerified = obj.NumberOfUsersValidated;
+            $scope.personVerified= obj.PersonVerified;
+            $scope.teamLead = obj.TeamLead;
+          
         }
         , function (reason) {
-            alert(reason)
+            var obj = JSON.parse(reason.message);
+            alert(obj.Message);
         }).catch(function (error) {
 
             var obj = JSON.parse(error.message);

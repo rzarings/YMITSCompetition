@@ -28,26 +28,39 @@ namespace YMITSDeployedWebsite.Controllers
 
         [HttpGet]
         [ActionName("getTeamUserNumber")]
-        public async Task<String> getTeamUserNumber()
+        public async Task<IHttpActionResult> getTeamUserNumber()
         {
 
-            var usersInTeam = new UsersInTeam();
+            UsersInTeam usersInTeam;
 
-            string thisSiteUrl = siteURL + "/GetUsers";
+            string thisSiteUrl = siteURL + "/getTeamUserNumber";
             using (var client = new HttpClient())
             {
                 // New code:
                 client.BaseAddress = new Uri(thisSiteUrl);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                
+             
+                    var response = await client.GetAsync(thisSiteUrl + "?userId=" + thisUser.SubscriptionId);
+                var responseCode = response.StatusCode.ToString();
 
-                var response = await client.GetAsync(thisSiteUrl+"?TeamName="+thisUser.TeamName);
-                usersInTeam = await response.Content.ReadAsAsync<UsersInTeam>();
+                if (responseCode.CompareTo("OK") == 0)
+                {
+                    usersInTeam = await response.Content.ReadAsAsync<UsersInTeam>();
+                    return Ok(JsonConvert.SerializeObject(usersInTeam));
 
-                // usersInTeam = JsonConvert.DeserializeObject<UsersInTeam>(e);
+                }
+                else
+                {
+                    JToken tmp = getErrorMessage(response);
+                    return BadRequest(tmp.ToString());
+                }
+
+
             }
                
-            return JsonConvert.SerializeObject(usersInTeam);
+           
 
         }
 
@@ -106,6 +119,14 @@ namespace YMITSDeployedWebsite.Controllers
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+                    //todo remove
+
+                    if (collection.SubscriptionId == null) {
+                        Random random = new Random();
+                        int randomNumber = random.Next(0, 100);
+                        collection.SubscriptionId = randomNumber.ToString(); ;
+                    }
+                    
                     var response = await client.PostAsJsonAsync(thisSiteUrl, collection);
                     var responseCode = response.StatusCode.ToString();
 
@@ -147,8 +168,7 @@ namespace YMITSDeployedWebsite.Controllers
                 string result = webClient.DownloadString(address);
                 if (result.Length > 0)
                 {
-                    var JsonResult = JObject.Parse(result);
-                    return (int)JsonResult["NumberUsersInTeam"];
+                    return Int32.Parse(result);
                 }
                 else
                     return 0; //nobody in this team

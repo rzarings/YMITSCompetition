@@ -123,6 +123,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\bg.jpg" />
+    <Content Include="Scripts\MyScripts\img\lumia520.jpg" />
+    <Content Include="Scripts\MyScripts\img\surface3.jpg" />
+    <Content Include="Scripts\MyScripts\img\xbox.png" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -912,7 +916,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <Content Include="Views\Home\Logged.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular.min.js.map" />

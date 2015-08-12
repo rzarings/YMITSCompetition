@@ -19,5 +19,17 @@ namespace YMITSDeployedWebsite.Models.JsonItems
             get;
             set;
         }
+
+        public bool PersonVerified
+        {
+            get;
+            set;
         }
+
+        public bool TeamLead
+        {
+            get;
+            set;
+        }
+    }
 }
