@@ -33,7 +33,7 @@
 
     //Function to Submit the form 
     $scope.submitForm = function () {
-        var r = confirm("Press a button");
+        var r = confirm($scope.TeamValidationText);
         if (r == true) {
             var Person = {};
             Person.Email = $scope.Email;
@@ -69,7 +69,7 @@
             }
             else {
                 $scope.button = "Join an existing team";
-                $scope.TeamValidationText = "You will join another team! And contribute to a friend's prize";
+                $scope.TeamValidationText = "You will join another team! And contribute to a friend's prize. You won't get any prizes if you select this option!";
             }
         }     
         ).catch(function (error) {
@@ -105,15 +105,19 @@ app.controller('loggedController', ['$scope', '$location', 'loggedService', func
     
     //function for the submit button
     $scope.clickButton = function () {
-        var promisePost = loggedService.finishContest().then(function () {
-            $location.path('/finished');
-        }).catch(function (error) {
 
-            var obj = JSON.parse(error.message);
-            alert(obj.Message);
+        var r = confirm($scope.TeamValidationText);
+        if (r == true) {
+            var promisePost = loggedService.finishContest().then(function () {
+                $location.path('/finished');
+            }).catch(function (error) {
+
+                var obj = JSON.parse(error.message);
+                alert(obj.Message);
+            }
+
+            );
         }
-
-        );
     };
         
 }]);
