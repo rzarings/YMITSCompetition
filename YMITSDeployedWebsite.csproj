@@ -126,6 +126,9 @@
     <Content Include="Content\img\bg.jpg" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\ms.png" />
+    <Content Include="Content\img\phone.png" />
+    <Content Include="Content\img\tablet.png" />
+    <Content Include="Content\img\xbox.png" />
     <Content Include="Content\styles\default.css" />
     <Content Include="Scripts\MyScripts\img\lumia520.jpg" />
     <Content Include="Scripts\MyScripts\img\surface3.jpg" />

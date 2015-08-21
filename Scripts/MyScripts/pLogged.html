@@ -5,7 +5,7 @@
     <h2 ng-if="!personVerified">Please wait until you are verified, if it takes too long contact us via facebook or twitter!</h2><br />
     <div class="infomsg">
         Your team currently has <b class="infomsgnr">{{numberPersonInTeam}}</b> users in total.
-        <br />
+        <br /><br />
         You currently have <b class="infomsgnr">{{numberPersonVerified}}</b> validated users!
         <br />
     </div>
@@ -15,25 +15,32 @@
     </div>
 
      <!-- Phone -->
-        <div ng-if="numberPersonVerified>=4&&numberPersonVerified<8">
-            <h1>At this point of the competition your team leader will receive the following prize: </h1> 
-            <img src="Scripts/MyScripts/img/lumia520.jpg" width="150" height="150"/>
-            <h1>Get {{}} more verified users and get the next prize:</h1>
-            <img src="Scripts/MyScripts/img/xbox.png" width="150" height="150"/>
+        <div class="prizes" ng-if="numberPersonVerified>=4&&numberPersonVerified<8">
+                <h1>At this point of the competition your team leader will receive the following prize: </h1> 
+            <div class="prizesinfo">
+                <p id="phonetitle1">NOKIA LUMIA</p>
+                <p id="phonetitle2">NOKIA LUMIA</p>
+                <img src="../../Content/img/phone.png" />
+            </div>
+                <h1>Get {{}} more verified users and get the next prize:</h1>
+            <div>
+                <img src="../../Content/img/xbox.png" />
+            </div>
+</div>
         </div>
 
     <!-- Xbox -->
     <div ng-if="numberPersonVerified>=8&&numberPersonVerified<12">
         <h1>At this point of the competition your team leader will receive the following prize: </h1>
-        <img src="Scripts/MyScripts/img/xbox.png" />
+        <img src="../../Content/img/xbox.png" />
         <h1>Get {{}} more verified users and get the next prize:</h1>
-        <img src="img/surface3.jpg"/>
+        <img src="../../Content/img/tablet.png"/>
     </div>
 
     <!-- Surface -->
     <div ng-if="numberPersonVerified=>12">
         <h1>At this point of the competition your team leader will receive the following prize:</h1>
-        <img src="Scripts/MyScripts/img/surface3.jpg" />
+        <img src="../../Content/img/tablet.png" />
     </div>
 
     <input ng-if="teamLead&&personVerified"
