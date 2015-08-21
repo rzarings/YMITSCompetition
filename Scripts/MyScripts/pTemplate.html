@@ -7,13 +7,13 @@
                 <input type="email" id="email" name="email" 
                        ng-model="Email" class="form-control" required
                        placeholder="Please put your email in" />
-                <div ng-messages="myForm.email.$error" ng-if="myForm.email.$dirty" style="color:maroon" role="alert">
-                    <div ng-message="email">this is not a proper mail address!</div>
+                <div ng-messages="myForm.email.$error" ng-if="myForm.email.$dirty" style="color:#ff6a00; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 200; margin-top: 5px; font-style: italic" role="alert">
+                    <div ng-message="email">This is not a proper Email address!</div>
                     <div ng-message="required"> Your email is required.</div>
                 </div>
                 </div>
 
-            <label for="TeamName" class="col-sm-3 control-label">Your team Name</label>
+            <label for="TeamName" class="col-sm-3 control-label">Your Team Name</label>
             <div class="col-sm-9">
                 <input type="text" id="TeamName" name="TeamName"
                         ng-change="teamNameValidation()" 
@@ -25,9 +25,9 @@
                        placeholder="Choose or create a team" />
                        <!-- team-name-validator -->
                     {{TeamValidationText}}             
-                <div ng-messages="myForm.TeamName.$error" ng-if="myForm.TeamName.$dirty" style="color:maroon" role="alert">
-                    <div ng-message="minlength">Your teamName is too short.</div>
-                    <div ng-message="required"> Your team name is required.</div>
+                <div ng-messages="myForm.TeamName.$error" ng-if="myForm.TeamName.$dirty" style="color:#ff6a00; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 200; margin-top: 5px; font-style: italic;" role="alert">
+                    <div ng-message="minlength">Your Team Name is too short.</div>
+                    <div ng-message="required"> Your Team Name is required.</div>
                    <!-- <div ng-message="teamNameValidator">The team you are trying to create is already existing, you will join the team!</div>-->
                     
                 </div>
@@ -40,7 +40,8 @@
 
     <div class="col-sm-offset-3 col-sm-9">
         <input type="button" class="btn btn-default"
-               value="Cancel"
+               id="cancelButton"
+               value="cancel"
                ng-click="cancelForm()" />
         <input type="button" class="btn btn-primary" value="{{button}}"
                  name="submitButton"

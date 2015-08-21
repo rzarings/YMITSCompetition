@@ -1,17 +1,17 @@
-﻿<div ng-controller="loggedController">
+﻿<div class="" ng-controller="loggedController">
     <h2>Congrats you are now registered for the contest!</h2>
-    </br>
+    <br />
     <h2 ng-if="personVerified">You are now validated</h2>
-    <h2 ng-if="!personVerified">Please wait until you are verified, if it takes too long contact us via facebook or twitter!</h2>
-    <h1>
-        your team currently has <b>{{numberPersonInTeam}}</b> users in total.
-        </br>
-        You currently have <b>{{numberPersonVerified}}</b> validated users!
-        </br>
-    </h1>
+    <h2 ng-if="!personVerified">Please wait until you are verified, if it takes too long contact us via facebook or twitter!</h2><br />
+    <div class="infomsg">
+        Your team currently has <b class="infomsgnr">{{numberPersonInTeam}}</b> users in total.
+        <br />
+        You currently have <b class="infomsgnr">{{numberPersonVerified}}</b> validated users!
+        <br />
+    </div>
     <!-- Nothing -->
-    <div ng-if="numberPersonVerified<4">
-        <h1>get more users in your team to help your teamleader win a phone, an Xbox or a Surface!</h1>
+    <div class="infomsgprize" ng-if="numberPersonVerified<4">
+        <p>Get more users in your team to help your teamleader win a phone, an Xbox or a Surface!</p>
     </div>
 
      <!-- Phone -->

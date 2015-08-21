@@ -14,19 +14,25 @@
     <script src="~/Scripts/MyScripts/pModule.js"></script>
     <script src="~/Scripts/MyScripts/Controllers/pController.js"></script>
     <script src="~/Scripts/MyScripts/Services/pService.js"></script>
-
     <script src="~/Scripts/MyScripts/pDirective.js"></script>
 </head>
 <body>
 
 
+    <div class="header">
+           <div class="headerlogo">
+               <img src="~/Content/img/logo.png" title="Logo" alt="Logo" width="200" height="60"/>
+           </div>
+    </div>
 
-        <div class="container body-content">
+    <div class="bgdiv"></div>
+        <div class="body-content">
             @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>
+            <div class="footer">
+                <div class="footercontent">
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                </div>
+            </div>
         </div>
 
         @Scripts.Render("~/bundles/jquery")
