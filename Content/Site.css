@@ -238,24 +238,22 @@ fieldset label {
     position: absolute;
     font-size: 120px;
     z-index: -1;
-    margin: 0;
-    padding: 0;
 }
 
-#phonetitle1 {
+.anim_title1 {
     opacity: 0;
     left: 0;
     top: 35%;
     color: rgba(7, 208, 201, 0.25);
-    animation: mleft 6s ease-out;
+    animation: mleft 4.5s ease-out;
 }
 
-#phonetitle2 {
+.anim_title2 {
     left: 0;
     bottom: 0;
-    font-size: 50px;
+    font-size: 50px !important;
     color: rgba(255,255,255,.75);
-    animation: mright 4.5s ease-out;
+    animation: mright 4.5s;
     margin-left: 50px;
     margin-bottom: 25px;
 }
@@ -270,16 +268,18 @@ fieldset label {
         opacity: 1;
     }
 
+
     100% {
         transform: translateX(450px);
         opacity: 0;
+        
     }
 }
 
 @keyframes mright {
     0% {
         opacity: 0;
-        transform: translateX(350px);
+        transform: translateX(250px);
     }
 
     100% {
@@ -293,9 +293,9 @@ fieldset label {
 
 .prizes img {
     display: inline-block;
-    width: 100%;
+    width: auto;
     height: inherit;
-    max-width: 225px;
+    max-height: 300px;
     margin-top: 10px;
     margin-bottom: 10px;
     z-index: 2;
