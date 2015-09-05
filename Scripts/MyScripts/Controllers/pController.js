@@ -33,21 +33,28 @@
 
     //Function to Submit the form 
     $scope.submitForm = function () {
-        var r = confirm($scope.TeamValidationText);
-        if (r == true) {
-            var Person = {};
-            Person.Email = $scope.Email;
-            Person.TeamName = $scope.TeamName;
-            var promisePost = personInfoService.postInfo(Person).then(function () {
-                $location.path('/logged');
-            }).catch(function (error) {
-                var obj = JSON.parse(error.message);
-                alert(obj.Message);
+
+        if ($scope.TeamValidationText != "Fetching Data... Wait before submitting please") {
+
+
+            var r = confirm($scope.TeamValidationText);
+            if (r == true) {
+                var Person = {};
+                Person.Email = $scope.Email;
+                Person.TeamName = $scope.TeamName;
+                var promisePost = personInfoService.postInfo(Person).then(function () {
+                    $location.path('/logged');
+                }).catch(function (error) {
+                    var obj = JSON.parse(error.message);
+                    alert(obj.Message);
+                }
+                );
+            } else {
+
             }
-            );
         } else {
-           
-        } 
+            alert("please wait that your team name is validated");
+        }
      
     };
 
@@ -60,7 +67,7 @@
 
     $scope.teamNameValidation = function () {
         $scope.button.disabled = true;
-        $scope.TeamValidationText = "Fetching Data...";
+        $scope.TeamValidationText = "Fetching Data... Wait before submitting please";
         var teamName = $scope.TeamName;
         var result=personInfoService.teamNameAvailable(teamName).then (function(data){
             if (data == true) {
@@ -106,7 +113,7 @@ app.controller('loggedController', ['$scope', '$location', 'loggedService', func
     //function for the submit button
     $scope.clickButton = function () {
 
-        var r = confirm($scope.TeamValidationText);
+        var r = confirm("You will now submit your team to get your prize. Past this point, your team will be locked. By accepting, you accept that Microsoft contact you per mail in the scope of delivering your prize");
         if (r == true) {
             var promisePost = loggedService.finishContest().then(function () {
                 $location.path('/finished');

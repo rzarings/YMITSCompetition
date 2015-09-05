@@ -1,10 +1,11 @@
 ﻿<form name="myForm" class="form-horizontal" novalidate  role="form">
     <fieldset>
-        <h2>Please enter your contact Information to participate to the contest</h2>
+        <h2>Please enter your contact Information to participate to the contest. Participating to the contest means that you agrees with the Terms&Conditions</h2>
         <div class="form-group">
             <label for="email" class="col-sm-3 control-label">Email</label>
             <div class="col-sm-9">
                 <input type="email" id="email" name="email" 
+                       pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
                        ng-model="Email" class="form-control" required
                        placeholder="Please put your email in" />
                 <div ng-messages="myForm.email.$error" ng-if="myForm.email.$dirty" style="color:#ff6a00; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 200; margin-top: 5px; font-style: italic" role="alert">
@@ -27,14 +28,12 @@
                     {{TeamValidationText}}             
                 <div ng-messages="myForm.TeamName.$error" ng-if="myForm.TeamName.$dirty" style="color:#ff6a00; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 200; margin-top: 5px; font-style: italic;" role="alert">
                     <div ng-message="minlength">Your Team Name is too short.</div>
-                    <div ng-message="required"> Your Team Name is required.</div>
-                   <!-- <div ng-message="teamNameValidator">The team you are trying to create is already existing, you will join the team!</div>-->
-                    
+                    <div ng-message="required"> Your Team Name is required.</div>                   
                 </div>
          
             </div>
         </div>
-        <h2>Specify a friend's teamname to join his team (In this case you won't receive any prize), Specify a new team name to create your own team!</h2>
+        <h2>Specify a friend's teamname to join his team (In this case you won't receive any prize), Specify a new team name to create your own team and get your own prize!</h2>
     </fieldset>
 
 
