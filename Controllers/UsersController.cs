@@ -111,7 +111,7 @@ namespace YMITSDeployedWebsite.Controllers
             if (ModelState.IsValid||(ModelState.Count==1&&ModelState.ContainsKey("collection.TeamName")))
             {
                 string thisSiteUrl = siteURL + "/PostUser";
-                collection.SubscriptionId = System.Environment.GetEnvironmentVariable("WEBSITE_OWNER_NAME").Substring(0,36);
+                collection.SubscriptionId = "{"+ Environment.GetEnvironmentVariable("WEBSITE_OWNER_NAME").Substring(0,36)+"}";
                 using (var client = new HttpClient())
                 {
                     // New code:
