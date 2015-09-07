@@ -91,9 +91,10 @@ app.controller('loggedController', ['$scope', '$location', 'loggedService', func
     //navigation on the logged view, update the guys there
     $scope.$on('$viewContentLoaded', function () {
         var temp = loggedService.getNumberOfPersInTeam().then(function (data) {
+         
             var obj = JSON.parse(data);
             $scope.numberPersonInTeam = obj.NumberUsersInTeam;
-            $scope.numberPersonVerified = obj.NumberOfUsersValidated;
+            $scope.NumberOfUsersValidated = obj.NumberOfUsersValidated;
             $scope.personVerified= obj.PersonVerified;
             $scope.teamLead = obj.TeamLead;
           
@@ -126,6 +127,16 @@ app.controller('loggedController', ['$scope', '$location', 'loggedService', func
             );
         }
     };
+
+    $scope.getNbPplLeft = function () {
+        if ($scope.NumberOfUsersValidated < 6) {
+            return 6 - $scope.NumberOfUsersValidated;
+        } else if ($scope.NumberOfUsersValidated < 12) {
+            return 12 - $scope.NumberOfUsersValidated;
+        } else if ($scope.NumberOfUsersValidated < 18) {
+        return 18 - $scope.NumberOfUsersValidated;
+    }
+    }
         
 }]);
 
