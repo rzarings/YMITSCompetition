@@ -159,7 +159,7 @@ fieldset label {
 #cancelButton:hover {
     background-color: rgba(255,255,255,.75);
 }
-.footer {
+/*.footer {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -188,7 +188,34 @@ fieldset label {
     float: right;
     margin-left: 15px;
 }
-
+*/
+.footer {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: auto;
+    min-height: 50px;
+    background-color: rgba(7, 208, 201, 0.05);
+    clear: both;
+    overflow: hidden;
+    z-index: 1;
+}
+.footer ul {
+    list-style-type: none;
+    position: relative;
+    width: 100%;
+    height: inherit;
+    margin: 0;
+    padding: 0;
+}
+.footer ul li {
+    position: relative;
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    margin-left: 15px;
+    font-weight: 600;
+}
 /*pLogged*/
 .infomsg {
     margin-left: 4%;
@@ -301,7 +328,6 @@ fieldset label {
     color: #fff;
     margin: auto;
 }
-
 .prizebutton:hover {
     background-color: rgba(7,208,201,.75);
 }
