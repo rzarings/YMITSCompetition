@@ -119,13 +119,12 @@ namespace YMITSDeployedWebsite.Controllers
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    //todo remove
-
-                    if (collection.SubscriptionId == null) {
+                    //enable in test case
+                  /*  if (collection.SubscriptionId == null) {
                         Random random = new Random();
                         int randomNumber = random.Next(0, 100);
                         collection.SubscriptionId = randomNumber.ToString(); ;
-                    }
+                    }*/
                     
                     var response = await client.PostAsJsonAsync(thisSiteUrl, collection);
                     var responseCode = response.StatusCode.ToString();

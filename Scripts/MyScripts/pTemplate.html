@@ -1,11 +1,10 @@
 ﻿<form name="myForm" class="form-horizontal" novalidate  role="form">
     <fieldset>
-        <h2>Please enter your contact Information to participate to the contest. Participating to the contest means that you agrees with the Terms&Conditions</h2>
+        <h2>Please enter your contact Information to participate to the contest. Participating to the contest means that you agrees with the Terms&Conditions. You agree that Microsoft use your mail for contest related purposes.</h2>
         <div class="form-group">
             <label for="email" class="col-sm-3 control-label">Email</label>
             <div class="col-sm-9">
                 <input type="email" id="email" name="email" 
-                       pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
                        ng-model="Email" class="form-control" required
                        placeholder="Please put your email in" />
                 <div ng-messages="myForm.email.$error" ng-if="myForm.email.$dirty" style="color:#ff6a00; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 200; margin-top: 5px; font-style: italic" role="alert">
