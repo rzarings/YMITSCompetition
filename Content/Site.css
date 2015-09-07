@@ -224,14 +224,12 @@ fieldset label {
     padding-top: 5px;
     padding-bottom: 5px;
 }
-
 .prizesinfo {
     position: relative;
     height: auto;
     overflow: hidden;
     z-index: 1;
 }
-
 .prizesinfo p {
     height: auto;
     font-weight: 700;
@@ -239,7 +237,6 @@ fieldset label {
     font-size: 120px;
     z-index: -1;
 }
-
 .anim_title1 {
     opacity: 0;
     left: 0;
@@ -247,7 +244,6 @@ fieldset label {
     color: rgba(7, 208, 201, 0.25);
     animation: mleft 4.5s ease-out;
 }
-
 .anim_title2 {
     left: 0;
     bottom: 0;
@@ -257,7 +253,6 @@ fieldset label {
     margin-left: 50px;
     margin-bottom: 25px;
 }
-
 @keyframes mleft {
     0% {
         opacity: 0;
@@ -275,7 +270,6 @@ fieldset label {
         
     }
 }
-
 @keyframes mright {
     0% {
         opacity: 0;
@@ -287,10 +281,6 @@ fieldset label {
     }
 
 }
-
-
-
-
 .prizes img {
     display: inline-block;
     width: auto;
@@ -300,8 +290,21 @@ fieldset label {
     margin-bottom: 10px;
     z-index: 2;
 }
+.prizebutton {
+    position: relative;
+    height: auto;
+    background-color:rgba(7,208,201,.5) ;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    color: #fff;
+    margin: auto;
+}
 
-
+.prizebutton:hover {
+    background-color: rgba(7,208,201,.75);
+}
 @media (max-width: 520px) {
     .header {
         position: fixed;
