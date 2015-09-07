@@ -212,9 +212,29 @@ fieldset label {
     position: relative;
     float: left;
     height: 50px;
+    color: #fff;
     line-height: 50px;
     margin-left: 15px;
     font-weight: 600;
+}
+
+.footer ul li a {
+    color: #fff;
+}
+
+.footer ul li a:hover, .footer ul li a:link, .footer ul li a:visited {
+    text-decoration: none;
+}
+
+.footer ul li a:hover {
+    color: #07d0c9;
+}
+
+#copyright {
+    color: #fff;
+    float: right;
+    margin-right: 10px;
+    font-weight: 200;
 }
 /*pLogged*/
 .infomsg {
