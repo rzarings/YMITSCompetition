@@ -108,8 +108,7 @@ namespace YMITSDeployedWebsite.Controllers
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
 
-                    var response = await client.GetAsync(thisSiteUrl + "?subscriptionId=" + "{1351DA08-2D7E-4B86-BE46-23004DE4BE5A}");
-                    //TODO remove "{" + Environment.GetEnvironmentVariable("WEBSITE_OWNER_NAME").Substring(0, 36) + "}");
+                    var response = await client.GetAsync(thisSiteUrl + "?subscriptionId=" + "{" + Environment.GetEnvironmentVariable("WEBSITE_OWNER_NAME").Substring(0, 36) + "}");
                     var responseCode = response.StatusCode.ToString();
                     PageStatus pageStatus;
                     if (responseCode.CompareTo("OK") == 0)
