@@ -14,9 +14,12 @@ namespace YMITSDeployedWebsite.Models.JsonItems
             set;
         }
 
-        public PageStatus()
+        public UserDTO user
         {
-            Status = 0;
+            get;
+            set;
         }
+
+       
         }
 }

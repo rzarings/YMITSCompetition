@@ -20,7 +20,7 @@
             }
             if (!$scope.$$phase) $scope.$apply();
         }, function (reason) {
-            alert(reason)
+            
         }).catch(function (error) {
             var obj = JSON.parse(error.message);
             alert(obj.Message);
@@ -90,8 +90,7 @@ app.controller('loggedController', ['$scope', '$location', 'loggedService', func
     
     //navigation on the logged view, update the guys there
     $scope.$on('$viewContentLoaded', function () {
-        var temp = loggedService.getNumberOfPersInTeam().then(function (data) {
-         
+        var temp = loggedService.getNumberOfPersInTeam().then(function (data) {         
             var obj = JSON.parse(data);
             $scope.numberPersonInTeam = obj.NumberUsersInTeam;
             $scope.NumberOfUsersValidated = obj.NumberOfUsersValidated;

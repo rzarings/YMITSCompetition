@@ -42,7 +42,7 @@ namespace YMITSDeployedWebsite.Controllers
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 
              
-                    var response = await client.GetAsync(thisSiteUrl + "?userId=" + thisUser.SubscriptionId);
+                    var response = await client.GetAsync(thisSiteUrl + "?subscriptionId=" + thisUser.SubscriptionId);
                 var responseCode = response.StatusCode.ToString();
 
                 if (responseCode.CompareTo("OK") == 0)
@@ -96,12 +96,39 @@ namespace YMITSDeployedWebsite.Controllers
 
         [HttpGet]
         [ActionName("GetCurrentPageStatus")]
-        public String GetCurrentPageStatus()
+        public async Task<IHttpActionResult> GetCurrentPageStatus()
         {
-            var pageStatus = new PageStatus();
-            pageStatus.Status = status;
-            return JsonConvert.SerializeObject(pageStatus);
+          
+                string thisSiteUrl = siteURL + "/GetStatusPage";
+                using (var client = new HttpClient())
+                {
+                    // New code:
+                    client.BaseAddress = new Uri(thisSiteUrl);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+
+                    var response = await client.GetAsync(thisSiteUrl + "?subscriptionId=" + "{1351DA08-2D7E-4B86-BE46-23004DE4BE5A}");
+                    //TODO remove "{" + Environment.GetEnvironmentVariable("WEBSITE_OWNER_NAME").Substring(0, 36) + "}");
+                    var responseCode = response.StatusCode.ToString();
+                    PageStatus pageStatus;
+                    if (responseCode.CompareTo("OK") == 0)
+                    {
+                        pageStatus = await response.Content.ReadAsAsync<PageStatus>();
+                        status = pageStatus.Status;
+                        thisUser = pageStatus.user;
+                        return Ok(JsonConvert.SerializeObject(pageStatus));
+
+                    }
+                    else
+                    {
+                        JToken tmp = getErrorMessage(response);
+                        return BadRequest(tmp.ToString());
+                    }
+
+                
+            }
+    
         }
 
         [HttpPost]
