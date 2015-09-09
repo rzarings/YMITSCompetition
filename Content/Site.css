@@ -190,8 +190,8 @@ fieldset label {
 }
 */
 .footer {
-    position: relative;
-    float: left;
+    position: fixed;
+    bottom: 0;
     width: 100%;
     height: auto;
     min-height: 50px;
