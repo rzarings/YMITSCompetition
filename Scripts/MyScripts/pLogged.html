@@ -1,61 +1,61 @@
 ﻿<div class="" ng-controller="loggedController">
     <h2>Congratulations you are now registered for the contest!</h2>
     <br />
+    <div class="prizesinfo">{{teamName}}</div>
+        <h2 ng-if="teamLead">You are the leader of the team {{teamName}}. If your account has been validated, you can redeem your prize by pressing the button at the end of the page.</h2>
+        <h2 ng-if="personVerified">You are now validated, as soon as the targeted prize is reached, the team leader might decide to reedeem the prize.</h2>
+        <h2 ng-if="!personVerified">Please wait until you are verified, if it takes too long, contact us at ymitsch@microsoft.com!</h2><br />
+        <div class="infomsg">
+            Your team currently has <b class="infomsgnr">{{numberPersonInTeam}}</b> users in total, of which <b class="infomsgnr">{{numberOfUsersValidated}}</b> are validated users!
+            <br />
+        </div>
+        <!-- Nothing -->
+        <div class="infomsgprize" ng-if="numberOfUsersValidated<6">
+            <p>Get <b class="infomsgnr"> {{getNbPplLeft()}}</b> more users in your team to help your teamleader win a phone, an Xbox or a Surface!</p>
+        </div>
 
-    <h2 ng-if="teamLead">You are the leader of the team {{teamName}}. If your account has been validated, you can redeem your prize by pressing the button at the end of the page.</h2>
-    <h2 ng-if="personVerified">You are now validated, as soon as the targeted prize is reached, the team leader might decide to reedeem the prize.</h2>
-    <h2 ng-if="!personVerified">Please wait until you are verified, if it takes too long, contact us at ymitsch@microsoft.com!</h2><br />
-    <div class="infomsg">
-        Your team currently has <b class="infomsgnr">{{numberPersonInTeam}}</b> users in total, of which <b class="infomsgnr">{{numberOfUsersValidated}}</b> are validated users!
-        <br />
-    </div>
-    <!-- Nothing -->
-    <div class="infomsgprize" ng-if="numberOfUsersValidated<6">
-        <p>Get <b class="infomsgnr"> {{getNbPplLeft()}}</b> more users in your team to help your teamleader win a phone, an Xbox or a Surface!</p>
-    </div>
-
-     <!-- Phone -->
+        <!-- Phone -->
         <div class="prizes" ng-if="numberOfUsersValidated>=6&&numberOfUsersValidated<12">
-                <h1>At this point of the competition your team leader will receive the following prize: </h1> 
+            <h1>At this point of the competition your team leader will receive the following prize: </h1>
             <div class="prizesinfo">
                 <p class="anim_title1">NOKIA LUMIA</p>
                 <p class="anim_title2">NOKIA LUMIA</p>
                 <img src="../../Content/img/phone.png" />
             </div>
-                <h1>Get <b class="infomsgnr"> {{getNbPplLeft()}}</b> more verified users and get the next prize:</h1>
+            <h1>Get <b class="infomsgnr"> {{getNbPplLeft()}}</b> more verified users and get the next prize:</h1>
             <div>
                 <img src="../../Content/img/xbox.png" />
             </div>
         </div>
 
-    <!-- Xbox -->
-    <!--note S: changed Var check from <12 to <=12-->
-    <div class="prizes" ng-if="numberOfUsersValidated>=12&&numberOfUsersValidated<18">
-        <h1>At this point of the competition your team leader will receive the following prize: </h1>
-        <div class="prizesinfo">
-            <p class="anim_title1">XBOX ONE</p>
-            <p class="anim_title2">XBOX ONE</p>
-            <img src="../../Content/img/xbox.png" />
+        <!-- Xbox -->
+        <!--note S: changed Var check from <12 to <=12-->
+        <div class="prizes" ng-if="numberOfUsersValidated>=12&&numberOfUsersValidated<18">
+            <h1>At this point of the competition your team leader will receive the following prize: </h1>
+            <div class="prizesinfo">
+                <p class="anim_title1">XBOX ONE</p>
+                <p class="anim_title2">XBOX ONE</p>
+                <img src="../../Content/img/xbox.png" />
+            </div>
+            <h1>Get <b class="infomsgnr">{{getNbPplLeft()}}</b> more verified users and get the next prize:</h1>
+            <div>
+                <img src="../../Content/img/tablet.png" />
+            </div>
         </div>
-        <h1>Get <b class="infomsgnr">{{getNbPplLeft()}}</b> more verified users and get the next prize:</h1>
-        <div>
-        <img src="../../Content/img/tablet.png"/>
-        </div>
-    </div>
 
-    <!-- Surface -->
-    <div class="prizes" ng-if="numberOfUsersValidated>=18">
-        <h1>At this point of the competition your team leader will receive the following prize:</h1>
-        <div class="prizesinfo">
-            <p class="anim_title1">SURFACE 3</p>
-            <p class="anim_title2">SURFACE 3</p>
-            <img src="../../Content/img/tablet.png" />
+        <!-- Surface -->
+        <div class="prizes" ng-if="numberOfUsersValidated>=18">
+            <h1>At this point of the competition your team leader will receive the following prize:</h1>
+            <div class="prizesinfo">
+                <p class="anim_title1">SURFACE 3</p>
+                <p class="anim_title2">SURFACE 3</p>
+                <img src="../../Content/img/tablet.png" />
+            </div>
         </div>
-    </div>
 
-    <input ng-if="teamLead&&personVerified"
-           type="button" class="prizebutton" value="Get your prize now!"
-           name="submitButton"
-           id="submitButton"
-           ng-click="clickButton()" />
-</div>
+        <input ng-if="teamLead&&personVerified"
+               type="button" class="prizebutton" value="Get your prize now!"
+               name="submitButton"
+               id="submitButton"
+               ng-click="clickButton()" />
+    </div>

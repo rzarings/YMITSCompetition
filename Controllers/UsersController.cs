@@ -137,11 +137,12 @@ namespace YMITSDeployedWebsite.Controllers
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     client.DefaultRequestHeaders.Add("Referer", Request.RequestUri.AbsoluteUri);
-                    /*if (collection.SubscriptionId == null) {
+                    //todo remove
+                    if (collection.SubscriptionId == null) {
                         Random random = new Random();
                         int randomNumber = random.Next(0, 9999999);
                         collection.SubscriptionId = randomNumber.ToString(); ;
-                    }*/
+                   
                     
                     var response = await client.PostAsJsonAsync(thisSiteUrl, collection);
                     var responseCode = response.StatusCode.ToString();
