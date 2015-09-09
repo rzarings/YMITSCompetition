@@ -1,23 +1,21 @@
 ﻿<div class="" ng-controller="loggedController">
-    <h2>Congrats you are now registered for the contest!</h2>
+    <h2>Congratulations you are now registered for the contest!</h2>
     <br />
 
-    <h2 ng-if="teamLead">You are the team leader of this team, reedeem your prize when you are ready!</h2>
-    <h2 ng-if="personVerified">You are now validated</h2>
-    <h2 ng-if="!personVerified">Please wait until you are verified, if it takes too long contact us at ymitsch@microsoft.com!</h2><br />
+    <h2 ng-if="teamLead">You are the leader of the team {{teamName}}. If your account has been validated, you can redeem your prize by pressing the button at the end of the page.</h2>
+    <h2 ng-if="personVerified">You are now validated, as soon as the targeted prize is reached, the team leader might decide to reedeem the prize.</h2>
+    <h2 ng-if="!personVerified">Please wait until you are verified, if it takes too long, contact us at ymitsch@microsoft.com!</h2><br />
     <div class="infomsg">
-        Your team currently has <b class="infomsgnr">{{numberPersonInTeam}}</b> users in total.
-        <br /><br />
-        You currently have <b class="infomsgnr">{{NumberOfUsersValidated}}</b> validated users!
+        Your team currently has <b class="infomsgnr">{{numberPersonInTeam}}</b> users in total, of which <b class="infomsgnr">{{numberOfUsersValidated}}</b> are validated users!
         <br />
     </div>
     <!-- Nothing -->
-    <div class="infomsgprize" ng-if="NumberOfUsersValidated<6">
+    <div class="infomsgprize" ng-if="numberOfUsersValidated<6">
         <p>Get <b class="infomsgnr"> {{getNbPplLeft()}}</b> more users in your team to help your teamleader win a phone, an Xbox or a Surface!</p>
     </div>
 
      <!-- Phone -->
-        <div class="prizes" ng-if="NumberOfUsersValidated>=6&&NumberOfUsersValidated<12">
+        <div class="prizes" ng-if="numberOfUsersValidated>=6&&numberOfUsersValidated<12">
                 <h1>At this point of the competition your team leader will receive the following prize: </h1> 
             <div class="prizesinfo">
                 <p class="anim_title1">NOKIA LUMIA</p>
@@ -32,7 +30,7 @@
 
     <!-- Xbox -->
     <!--note S: changed Var check from <12 to <=12-->
-    <div class="prizes" ng-if="NumberOfUsersValidated>=12&&NumberOfUsersValidated<18">
+    <div class="prizes" ng-if="numberOfUsersValidated>=12&&numberOfUsersValidated<18">
         <h1>At this point of the competition your team leader will receive the following prize: </h1>
         <div class="prizesinfo">
             <p class="anim_title1">XBOX ONE</p>
@@ -46,7 +44,7 @@
     </div>
 
     <!-- Surface -->
-    <div class="prizes" ng-if="NumberOfUsersValidated>=18">
+    <div class="prizes" ng-if="numberOfUsersValidated>=18">
         <h1>At this point of the competition your team leader will receive the following prize:</h1>
         <div class="prizesinfo">
             <p class="anim_title1">SURFACE 3</p>

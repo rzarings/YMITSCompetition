@@ -978,6 +978,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\JsonItems\PageStatus.cs" />
+    <Compile Include="Models\JsonItems\UserNumber.cs" />
     <Compile Include="Models\JsonItems\UsersInTeam.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Models\UserDTO.cs" />

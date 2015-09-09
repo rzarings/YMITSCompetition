@@ -2,10 +2,10 @@
 
     //Function to Reset Scope variables
     function initialize() {
-        $scope.TeamLead = "";
-        $scope.Email = "";
-        $scope.SubscriptionId = "";
-        $scope.TeamName = "";
+        $scope.teamLead = "";
+        $scope.email = "";
+        $scope.subscriptionId = "";
+        $scope.teamName = "";
     };
 
     //function when we load the view
@@ -38,16 +38,15 @@
     $scope.submitForm = function () {
 
         if ($scope.TeamValidationText != "Fetching Data... Wait before submitting please") {
-
-
             var r = confirm($scope.TeamValidationText);
             if (r == true) {
                 var Person = {};
-                Person.Email = $scope.Email;
-                Person.TeamName = $scope.TeamName;
+                Person.Email = $scope.email;
+                Person.TeamName = $scope.teamName;
                 var promisePost = personInfoService.postInfo(Person).then(function () {
                     $location.path('/logged');
                 }).catch(function (error) {
+                  
                     var obj = JSON.parse(error.message);
                     alert(obj.Message);
                 }
@@ -71,9 +70,13 @@
     $scope.teamNameValidation = function () {
         $scope.button.disabled = true;
         $scope.TeamValidationText = "Fetching Data... Wait before submitting please";
-        var teamName = $scope.TeamName;
-        var result=personInfoService.teamNameAvailable(teamName).then (function(data){
-            if (data == true) {
+        var teamName = $scope.teamName;
+        var result = personInfoService.teamNameAvailable(teamName).then(function (data) {
+
+            var obj = JSON.parse(data);
+  
+            if (obj.Number == 0) {
+               
                 $scope.button = "create a new team";
                 $scope.TeamValidationText = "You will create your own team, and get your own prize!";
             }
@@ -83,6 +86,8 @@
             }
         }     
         ).catch(function (error) {
+            var obj = JSON.parse(error.message);
+            alert(obj.Message);
             $scope.teamAvailable = "";
         });
     }; 
@@ -96,9 +101,10 @@ app.controller('loggedController', ['$scope', '$location', 'loggedService', func
         var temp = loggedService.getNumberOfPersInTeam().then(function (data) {         
             var obj = JSON.parse(data);
             $scope.numberPersonInTeam = obj.NumberUsersInTeam;
-            $scope.NumberOfUsersValidated = obj.NumberOfUsersValidated;
+            $scope.numberOfUsersValidated = obj.NumberOfUsersValidated;
             $scope.personVerified= obj.PersonVerified;
             $scope.teamLead = obj.TeamLead;
+            $scope.teamName = obj.TeamName;
           
         }
         , function (reason) {
@@ -116,7 +122,7 @@ app.controller('loggedController', ['$scope', '$location', 'loggedService', func
     //function for the submit button
     $scope.clickButton = function () {
 
-        var r = confirm("You will now submit your team to get your prize. Past this point, your team will be locked. By accepting, you accept that Microsoft contact you per mail in the scope of delivering your prize");
+        var r = confirm("You are about to reedeam your prize. Please be aware that by reedeam your price your team will be locked and you want be able to add additional users to your team");
         if (r == true) {
             var promisePost = loggedService.finishContest().then(function () {
                 $location.path('/finished');
@@ -131,12 +137,12 @@ app.controller('loggedController', ['$scope', '$location', 'loggedService', func
     };
 
     $scope.getNbPplLeft = function () {
-        if ($scope.NumberOfUsersValidated < 6) {
-            return 6 - $scope.NumberOfUsersValidated;
-        } else if ($scope.NumberOfUsersValidated < 12) {
-            return 12 - $scope.NumberOfUsersValidated;
-        } else if ($scope.NumberOfUsersValidated < 18) {
-        return 18 - $scope.NumberOfUsersValidated;
+        if ($scope.numberOfUsersValidated < 6) {
+            return 6 - $scope.numberOfUsersValidated;
+        } else if ($scope.numberOfUsersValidated < 12) {
+            return 12 - $scope.numberOfUsersValidated;
+        } else if ($scope.numberOfUsersValidated < 18) {
+            return 18 - $scope.numberOfUsersValidated;
     }
     }
         

@@ -30,7 +30,6 @@ namespace YMITSDeployedWebsite.Controllers
         [ActionName("getTeamUserNumber")]
         public async Task<IHttpActionResult> getTeamUserNumber()
         {
-
             UsersInTeam usersInTeam;
 
             string thisSiteUrl = siteURL + "/getTeamUserNumber";
@@ -40,9 +39,9 @@ namespace YMITSDeployedWebsite.Controllers
                 client.BaseAddress = new Uri(thisSiteUrl);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                
-             
-                    var response = await client.GetAsync(thisSiteUrl + "?subscriptionId=" + thisUser.SubscriptionId);
+                client.DefaultRequestHeaders.Add("Referer", Request.RequestUri.AbsoluteUri);
+
+                var response = await client.GetAsync(thisSiteUrl + "?subscriptionId=" + thisUser.SubscriptionId);
                 var responseCode = response.StatusCode.ToString();
 
                 if (responseCode.CompareTo("OK") == 0)
@@ -56,12 +55,7 @@ namespace YMITSDeployedWebsite.Controllers
                     JToken tmp = getErrorMessage(response);
                     return BadRequest(tmp.ToString());
                 }
-
-
             }
-               
-           
-
         }
 
         [HttpGet]
@@ -76,6 +70,7 @@ namespace YMITSDeployedWebsite.Controllers
                 client.BaseAddress = new Uri(thisSiteUrl);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("Referer", Request.RequestUri.AbsoluteUri);
 
                 var response = await client.GetAsync(thisSiteUrl + "?myUser=" + thisUser.SubscriptionId);
                 var responseCode = response.StatusCode.ToString();
@@ -106,9 +101,9 @@ namespace YMITSDeployedWebsite.Controllers
                     client.BaseAddress = new Uri(thisSiteUrl);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    client.DefaultRequestHeaders.Add("Referer", Request.RequestUri.AbsoluteUri);
 
-
-                    var response = await client.GetAsync(thisSiteUrl + "?subscriptionId=" + "{" + Environment.GetEnvironmentVariable("WEBSITE_OWNER_NAME").Substring(0, 36) + "}");
+                var response = await client.GetAsync(thisSiteUrl + "?subscriptionId=" + "{" + Environment.GetEnvironmentVariable("WEBSITE_OWNER_NAME").Substring(0, 36) + "}");
                     var responseCode = response.StatusCode.ToString();
                     PageStatus pageStatus;
                     if (responseCode.CompareTo("OK") == 0)
@@ -123,18 +118,15 @@ namespace YMITSDeployedWebsite.Controllers
                     {
                         JToken tmp = getErrorMessage(response);
                         return BadRequest(tmp.ToString());
-                    }
-
-                
-            }
-    
+                    }              
+            }   
         }
 
         [HttpPost]
         [ActionName("PostNewUser")]
         public async Task<IHttpActionResult> PostNewUser(UserDTO collection)
         {
-            if (ModelState.IsValid||(ModelState.Count==1&&ModelState.ContainsKey("collection.TeamName")))
+            if (ModelState.IsValid)
             {
                 string thisSiteUrl = siteURL + "/PostUser";
                 collection.SubscriptionId = "{"+ Environment.GetEnvironmentVariable("WEBSITE_OWNER_NAME").Substring(0,36)+"}";
@@ -144,11 +136,10 @@ namespace YMITSDeployedWebsite.Controllers
                     client.BaseAddress = new Uri(thisSiteUrl);
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                    //enable in test case
-                  /*  if (collection.SubscriptionId == null) {
+                    client.DefaultRequestHeaders.Add("Referer", Request.RequestUri.AbsoluteUri);
+                    /*if (collection.SubscriptionId == null) {
                         Random random = new Random();
-                        int randomNumber = random.Next(0, 100);
+                        int randomNumber = random.Next(0, 9999999);
                         collection.SubscriptionId = randomNumber.ToString(); ;
                     }*/
                     
@@ -157,9 +148,7 @@ namespace YMITSDeployedWebsite.Controllers
 
                     if (responseCode.CompareTo("Created") == 0) //user has been created
                     {
-
-                        
-                        thisUser = await response.Content.ReadAsAsync<UserDTO>(); ;
+                        thisUser = await response.Content.ReadAsAsync<UserDTO>(); 
                         status = 1;
                         return Ok();
                     }
@@ -181,40 +170,40 @@ namespace YMITSDeployedWebsite.Controllers
         }
 
 
-        private int getNumbersOfGuysInTeam(string teamName)
-        {
-            string thisSiteUrl = siteURL + "/GetUsers";
-            string address = string.Format(
-            thisSiteUrl + "?TeamName={0}",
-            Uri.EscapeDataString(teamName));
-            WebClient webClient = new WebClient();
-            try
-            {
-                string result = webClient.DownloadString(address);
-                if (result.Length > 0)
-                {
-                    return Int32.Parse(result);
-                }
-                else
-                    return 0; //nobody in this team
-
-            }
-            catch (Exception ex)
-            {
-                return 0;
-            }
-
-            }
-
         [HttpGet]
         [ActionName("TeamFree")]
-        public IHttpActionResult TeamFree(string teamName)
+        public async Task<IHttpActionResult> getNumbersOfGuysInTeam(string teamName)
         {
-            var tmp = getNumbersOfGuysInTeam(teamName);
-            if (tmp> 0)
-                return Ok(false);
-            return Ok(true);
+                string thisSiteUrl = siteURL + "/GetUsers";
+            using (var client = new HttpClient())
+            {
+                // New code:
+                client.BaseAddress = new Uri(thisSiteUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("Referer", Request.RequestUri.AbsoluteUri);
 
+                var response = await client.GetAsync(thisSiteUrl+"?TeamName="+teamName);
+
+                var responseCode = response.StatusCode.ToString();
+                
+                if (responseCode.CompareTo("OK") == 0)
+                {
+                        UserNumber usernb  = await response.Content.ReadAsAsync<UserNumber>();
+                    return Ok(JsonConvert.SerializeObject(usernb));
+
+                }
+                else
+                {
+                    JToken tmp = getErrorMessage(response);
+                    return BadRequest(tmp.ToString());
+                }
+
+
+            }
+           
         }
+
+       
     }
 }

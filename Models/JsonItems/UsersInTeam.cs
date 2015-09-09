@@ -31,5 +31,11 @@ namespace YMITSDeployedWebsite.Models.JsonItems
             get;
             set;
         }
+
+        public string TeamName
+        {
+            get;
+            set;
+        }
     }
 }
