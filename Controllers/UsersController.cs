@@ -138,10 +138,12 @@ namespace YMITSDeployedWebsite.Controllers
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     client.DefaultRequestHeaders.Add("Referer", Request.RequestUri.AbsoluteUri);
                     //todo remove
-                    if (collection.SubscriptionId == null) {
+                    if (collection.SubscriptionId == null)
+                    {
                         Random random = new Random();
                         int randomNumber = random.Next(0, 9999999);
                         collection.SubscriptionId = randomNumber.ToString(); ;
+                    }
                    
                     
                     var response = await client.PostAsJsonAsync(thisSiteUrl, collection);
