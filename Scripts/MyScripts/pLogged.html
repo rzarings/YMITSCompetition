@@ -1,7 +1,6 @@
 ﻿<div class="" ng-controller="loggedController">
     <h2>Congratulations you are now registered for the contest!</h2>
-    <br />
-    <div class="prizesinfo">{{teamName}}</div>
+    <p class="team_title">Team {{teamName}}</p>
         <h2 ng-if="teamLead">You are the leader of the team {{teamName}}. If your account has been validated, you can redeem your prize by pressing the button at the end of the page.</h2>
         <h2 ng-if="personVerified">You are now validated, as soon as the targeted prize is reached, the team leader might decide to reedeem the prize.</h2>
         <h2 ng-if="!personVerified">Please wait until you are verified, if it takes too long, contact us at ymitsch@microsoft.com!</h2><br />
@@ -67,10 +66,11 @@
                 <img src="../../Content/img/tablet.png" />
             </div>
         </div>
+    <input ng-if="teamLead&&personVerified"
+           type="button" class="prizebutton" value="Get your prize now!"
+           name="submitButton"
+           id="submitButton"
+           ng-click="clickButton()" />
 
-        <input ng-if="teamLead&&personVerified"
-               type="button" class="prizebutton" value="Get your prize now!"
-               name="submitButton"
-               id="submitButton"
-               ng-click="clickButton()" />
     </div>
+
