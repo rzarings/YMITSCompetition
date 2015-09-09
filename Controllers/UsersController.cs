@@ -129,7 +129,8 @@ namespace YMITSDeployedWebsite.Controllers
             if (ModelState.IsValid)
             {
                 string thisSiteUrl = siteURL + "/PostUser";
-                collection.SubscriptionId = "{"+ Environment.GetEnvironmentVariable("WEBSITE_OWNER_NAME").Substring(0,36)+"}";
+
+                //TODO collection.SubscriptionId = "{"+ Environment.GetEnvironmentVariable("WEBSITE_OWNER_NAME").Substring(0,36)+"}";
                 using (var client = new HttpClient())
                 {
                     // New code:
