@@ -18,6 +18,9 @@
             else if (obj.Status == 1) {
                 $location.path('/logged');
             }
+            else if (obj.Status == 2) {
+                $location.path('/finished');
+            }
             if (!$scope.$$phase) $scope.$apply();
         }, function (reason) {
             
