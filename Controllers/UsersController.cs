@@ -130,7 +130,7 @@ namespace YMITSDeployedWebsite.Controllers
             {
                 string thisSiteUrl = siteURL + "/PostUser";
 
-               collection.SubscriptionId = "{"+ Environment.GetEnvironmentVariable("WEBSITE_OWNER_NAME").Substring(0,36)+"}";
+               // todo collection.SubscriptionId = "{"+ Environment.GetEnvironmentVariable("WEBSITE_OWNER_NAME").Substring(0,36)+"}";
                 using (var client = new HttpClient())
                 {
                     // New code:
