@@ -218,41 +218,45 @@ fieldset label {
     position: relative;
     float: left;
     width: 100%;
+    height: 50px;
+    margin-top: 30px;
+    background-color: red;
+    padding-top: 25px;
 }
 
 .fb-share{
     position: relative;
     float: left;
-    width: 50px;
+    width: 50%;
     height: 100px;
     /*background-image: url("/Content/img/fb.png");
     background-size: 200px 60px;
     background-repeat: no-repeat;
     background-position: center;*/
     text-align: center;
-    transform: scale(1.5);
-    -ms-transform: scale(1.5);
-    -webkit-transform: scale(1.5);
-    -o-transform: scale(1.5);
-    -moz-transform: scale(1.5);
+    transform: scale(1.25);
+    -ms-transform: scale(1.25);
+    -webkit-transform: scale(1.25);
+    -o-transform: scale(1.25);
+    -moz-transform: scale(1.25);
     padding: 0;
     margin: 0;
 }
 .tw-share {
     position: relative;
     float: left;
-    width: 50px;
+    width: 50%;
     height: 100px;
     /*background-image: url("/Content/img/tw.png");
     background-size: 200px 60px;
     background-repeat: no-repeat;
     background-position: center;*/
     text-align: center;
-    transform: scale(1.5);
-    -ms-transform: scale(1.5);
-    -webkit-transform: scale(1.5);
-    -o-transform: scale(1.5);
-    -moz-transform: scale(1.5);
+    transform: scale(1.25);
+    -ms-transform: scale(1.25);
+    -webkit-transform: scale(1.25);
+    -o-transform: scale(1.25);
+    -moz-transform: scale(1.25);
     padding: 0;
     margin: 0;
 }
@@ -287,8 +291,10 @@ fieldset label {
     
 }
 .prizes {
+    position: relative;
+    float: left;
     height: auto;
-    width: auto;
+    width: 100%;
     text-align: center;
     margin-top: 50px;
     padding-top: 10px;
