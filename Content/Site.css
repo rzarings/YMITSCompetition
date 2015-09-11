@@ -218,9 +218,14 @@ fieldset label {
     position: relative;
     float: left;
     width: 100%;
-    height: 50px;
+    height: 80px;
     margin-top: 30px;
     padding-top: 25px;
+    margin-bottom: -30px;
+}
+
+.scm-buttons p {
+    margin-bottom: 20px;
 }
 
 .fb-share{
