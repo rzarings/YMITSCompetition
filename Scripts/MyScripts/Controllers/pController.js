@@ -76,7 +76,6 @@
             var obj = JSON.parse(data);
   
             if (obj.Number == 0) {
-               
                 $scope.button = "create a new team";
                 $scope.TeamValidationText = "You will create your own team, and get your own prize!";
             }
