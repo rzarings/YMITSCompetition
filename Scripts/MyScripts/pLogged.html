@@ -8,14 +8,13 @@
             Your team currently has <b class="infomsgnr">{{numberPersonInTeam}}</b> users in total, of which <b class="infomsgnr">{{numberOfUsersValidated}}</b> are validated users!
             <br />
         </div>
+
         <!-- Nothing -->
         <div class="infomsgprize" ng-if="numberOfUsersValidated<6">
             <p>Get <b class="infomsgnr"> {{getNbPplLeft()}}</b> more users in your team to help your teamleader win a phone, an Xbox or a Surface!</p>
         </div>
 
-        
-
-
+   
     <div class="infomsg">
         <div class="scm-buttons">
             <p>Share this page to more friends to get an even better prize!</p>
@@ -23,13 +22,8 @@
                 <div class="fb-share-button" data-href="http://aka.ms/ymits" data-layout="button"> </div>
             </div>
             <div class="tw-share">
-                <a class="twitter-share-button"
-                   href="https://twitter.com/intent/tweet"
-                   data-url="http://aka.ms/ymits"
-                   data-text="Help me win an Smartphone, a Xbox, or a Surface by joining team {{teamName}} in this contest"
-                   data-count="none">Twitter
-                </a>
-            </div>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-url="http://aka.ms/ymits" data-text="Help me win an Smartphone, a Xbox, or a Surface by joining team {{teamName}} in this contest">Tweet</a>
+                   </div>
         </div>
     </div>
     <!-- Phone -->
