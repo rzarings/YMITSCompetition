@@ -10,7 +10,7 @@
 
     //function when we load the view
     $scope.$on('$viewContentLoaded', function () {
-        $scope.button="submit";
+        $scope.button="Submit";
         var temp = personInfoService.getPage().then(function (data) {
             var obj = JSON.parse(data);
             if (obj.Status == 0)
@@ -55,7 +55,7 @@
 
             }
         } else {
-            alert("please wait that your team name is validated");
+            alert("Please wait that your team name is validated");
         }
      
     };
@@ -76,7 +76,7 @@
             var obj = JSON.parse(data);
   
             if (obj.Number == 0) {
-                $scope.button = "create a new team";
+                $scope.button = "Create a new team";
                 $scope.TeamValidationText = "You will create your own team, and get your own prize!";
             }
             else {
